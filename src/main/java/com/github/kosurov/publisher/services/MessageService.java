@@ -1,6 +1,7 @@
 package com.github.kosurov.publisher.services;
 
 import com.github.kosurov.publisher.models.Message;
+import com.github.kosurov.publisher.util.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -9,9 +10,11 @@ import java.util.Random;
 public class MessageService {
 
     public Message generateRandomMessage() {
+        Logger logger = Logger.getInstance();
         Message message = new Message(generateRandomMsisdn(),
                 generateRandomAction(),
                 System.currentTimeMillis());
+        logger.log("Message sent: " + message);
         return message;
     }
 
