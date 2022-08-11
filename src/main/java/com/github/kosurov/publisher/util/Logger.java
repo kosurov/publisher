@@ -1,10 +1,13 @@
 package com.github.kosurov.publisher.util;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Logger {
-    private int logNumber = 1;
 
     private static Logger logger;
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
@@ -21,7 +24,22 @@ public class Logger {
     }
 
     public void log(String msg) {
+        // Создаем новый файл log.txt, если он отсуствует
+        File log = new File("log.txt");
+        try {
+            if (!log.exists()) {
+                log.createNewFile();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("[" + logNumber++ + " " + LocalDateTime.now().format(formatter) + "] " + msg);
+        // Записываем в файл log.txt
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(log, true))) {
+            String str = "[" + LocalDateTime.now().format(formatter) + "] " + msg + "\n";
+            bufferedWriter.write(str);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

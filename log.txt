@@ -1,0 +1,3 @@
+[12.08.2022 00:17:57] Message sent: {"msisdn":157508792,"action":"PURCHASE","timestamp":1660252677613}
+[12.08.2022 00:17:59] Message sent: {"msisdn":170495579,"action":"SUBSCRIPTION","timestamp":1660252679085}
+[12.08.2022 00:18:02] Message sent: {"msisdn":188015927,"action":"PURCHASE","timestamp":1660252682759}
